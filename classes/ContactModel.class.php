@@ -44,13 +44,15 @@ class Contact {
         self::$Conn = Database::getInstance();
 
         //pole pro objekty
-        $arrObjects = array();
+        $arrObjects = []; // array()
 
         $stmt = self::$Conn->query('SELECT * FROM contact');
+        // ORM - object relation mapping
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'Contact');
 
         while($Contact = $stmt->fetch()){
 
+            //print_r($Contact); die();
             array_push($arrObjects, $Contact);
         }
 
@@ -108,7 +110,10 @@ class Contact {
     public function __get($strName){
 
         switch ($strName) {
-    
+            case 'Id':
+                return $this->id;
+                break;
+
             case 'Name':
                 return $this->name;
                 break;

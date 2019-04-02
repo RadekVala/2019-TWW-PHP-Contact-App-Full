@@ -8,7 +8,7 @@ class Database {
         if(null == self::$instance){
             try {
                 //pripojeni k DB
-                self::$instance = new PDO('mysql:host=localhost;dbname=twww', 'root', 'root');
+                self::$instance = new PDO('mysql:host=localhost;dbname=contact_db_ut10', 'root', 'root');
                 //hlaseni chyb DB
                 self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

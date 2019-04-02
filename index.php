@@ -9,8 +9,11 @@ require('classes/ContactModel.class.php');
 //$Contact->Name = 'Emil';
 //$Contact->Surname = 'Novy';
 
+//print_r($Contact);
+
 //ulozi vlastnosti objektu perzistentne do DB
 //$savedId = $Contact->Save();
+//echo $savedId;
 
 //nactu objekt dle prave ulozeneho id radku v DB
 //$savedContact = Contact::Load($savedId);
@@ -44,7 +47,7 @@ $allContacts = Contact::LoadAll();
         <a class="nav-link" href="#">Contact list <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Create New</a>
+        <a class="nav-link" href="create.php">Create New</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -56,7 +59,14 @@ $allContacts = Contact::LoadAll();
 
     <ul class="list-group">
     <?php foreach($allContacts as $Con){ ?>
-        <li class="list-group-item clearfix"><?php echo $Con->Id; ?><br ><?php echo $Con->Surname; ?> <?php echo $Con->Name; ?> <a class="btn btn-danger float-right" href="#" role="button">Delete</a></li>
+        <li class="list-group-item clearfix">
+          <?php echo $Con->Id; ?><br ><?php echo $Con->Surname; ?> <?php echo $Con->Name; ?> 
+          <form class="float-right" action="process.php" method="post">
+            <input type="hidden" name="action" value="delete">
+            <input type="hidden" name="id" value="<?php echo $Con->Id; ?>">
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </li>
     </ul>
     <?php } ?>
       
